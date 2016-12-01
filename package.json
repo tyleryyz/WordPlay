@@ -1,0 +1,13 @@
+{
+  "name": "wordplay",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.18.0",
+    "bcrypt": "^0.8.7",
+    "meteor-node-stubs": "~0.2.0",
+    "word-list-json": "^0.2.0"
+  }
+}
