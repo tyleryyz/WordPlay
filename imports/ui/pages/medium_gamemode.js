@@ -1,4 +1,4 @@
-import './easy_gamemode.html';
+import './medium_gamemode.html';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
@@ -7,8 +7,8 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import { Session } from 'meteor/session';
 import '../components/scrambled_word.js'
 
-Template.easy_gamemode.onCreated(() => {
-  Session.set("difficulty", "EASY")
+Template.medium_gamemode.onCreated(() => {
+  Session.set("difficulty", "MEDIUM")
 })
 /*
 Template.easy_gamemode.events({
