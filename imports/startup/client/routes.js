@@ -29,3 +29,9 @@ authroutes.route('/', {
        BlazeLayout.render('default', {yield: 'easy_gamemode'})
      }
    })
+   authroutes.route('/submit_score', {
+      name: 'submit_score',
+      action(){
+        BlazeLayout.render('default', {yield: 'submit_score'})
+      }
+    })
