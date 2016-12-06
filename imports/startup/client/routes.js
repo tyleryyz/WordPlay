@@ -7,6 +7,7 @@ import '../../ui/pages/easy_gamemode.js';
 import '../../ui/pages/medium_gamemode.js';
 import '../../ui/pages/hard_gamemode.js';
 import'../../ui/pages/submit_score.js';
+import'../../ui/pages/view_scores.js';
 
 const authroutes = FlowRouter.group({
   name: 'authenticated',
@@ -52,3 +53,9 @@ authroutes.route('/', {
         BlazeLayout.render('default', {yield: 'submit_score'})
       }
     })
+    authroutes.route('/view_scores', {
+       name: 'view_scores',
+       action(){
+         BlazeLayout.render('default', {yield: 'view_scores'})
+       }
+     })

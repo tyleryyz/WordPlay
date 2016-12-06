@@ -13,7 +13,7 @@ Template.scrambled_word.onCreated(() => {
         if (Session.get("difficulty")=="EASY"){
           console.log("inside easy check");
           while (Session.get("check") == true){
-            console.log("inside while");
+            console.log("inside easy oncreated while");
             Session.set("rand_word", Random.choice(response.wordlist));
             if (Session.get("rand_word").length <= 5){
               Session.set("check", false);
@@ -34,10 +34,10 @@ Template.scrambled_word.onCreated(() => {
           console.log("OnCreated shuffled word", Session.get("shuffled_word"));
             //console.log("OnCreated Current Random Word second check: ", Session.get("rand_word"));
           }
-          if (Session.get("difficulty")=="MEDIUM"){
-            console.log("inside easy check");
+          else if (Session.get("difficulty")=="MEDIUM"){
+            console.log("inside medium check");
             while (Session.get("check") == true){
-              console.log("inside while");
+              console.log("inside medium on created while");
               Session.set("rand_word", Random.choice(response.wordlist));
               if (Session.get("rand_word").length <= 8){
                 Session.set("check", false);
@@ -58,10 +58,10 @@ Template.scrambled_word.onCreated(() => {
             console.log("OnCreated shuffled word", Session.get("shuffled_word"));
               //console.log("OnCreated Current Random Word second check: ", Session.get("rand_word"));
             }
-            if (Session.get("difficulty")=="HARD"){
-              console.log("inside easy check");
+            else if (Session.get("difficulty")=="HARD"){
+              console.log("inside hard check");
               while (Session.get("check") == true){
-                console.log("inside while");
+                console.log("inside hard oncreated while");
                 Session.set("rand_word", Random.choice(response.wordlist));
                 if (Session.get("rand_word").length > 5){
                   Session.set("check", false);
@@ -87,10 +87,13 @@ Template.scrambled_word.onCreated(() => {
 
   Session.set("score", 0);
   Session.set("helper", 0);
+  Session.set("easy_levels", 10);
+  Session.set("medium_levels", 15);
+  Session.set("hard_levels", 20);
 
 })
 
-Template.easy_gamemode.events({
+Template.scrambled_word.events({
   'submit .make_guess':function (event) {
     event.preventDefault();
     console.log("button_pressed");
@@ -115,7 +118,7 @@ Template.easy_gamemode.events({
     if (Session.get("difficulty") == "MEDIUM" && Session.get("helper")==15){
       FlowRouter.go('/submit_score');
     }
-    if (Session.get("difficulty") == "HARD" && Session.get("helper")==25){
+    if (Session.get("difficulty") == "HARD" && Session.get("helper")==20){
       FlowRouter.go('/submit_score');
     }
     //console.log("inside shuffler");
@@ -146,10 +149,10 @@ Template.easy_gamemode.events({
         console.log("OnCreated shuffled word", Session.get("shuffled_word"));
           //console.log("OnCreated Current Random Word second check: ", Session.get("rand_word"));
         }
-        if (Session.get("difficulty")=="MEDIUM"){
-          console.log("inside easy check");
+        else if (Session.get("difficulty")=="MEDIUM"){
+          console.log("inside medium check");
           while (Session.get("check") == true){
-            console.log("inside while");
+            console.log("inside medium button while");
             Session.set("rand_word", Random.choice(response.wordlist));
             if (Session.get("rand_word").length <= 8){
               Session.set("check", false);
@@ -170,10 +173,10 @@ Template.easy_gamemode.events({
           console.log("OnCreated shuffled word", Session.get("shuffled_word"));
             //console.log("OnCreated Current Random Word second check: ", Session.get("rand_word"));
           }
-          if (Session.get("difficulty")=="HARD"){
-            console.log("inside easy check");
+          else if (Session.get("difficulty")=="HARD"){
+            console.log("inside hard check");
             while (Session.get("check") == true){
-              console.log("inside while");
+              console.log("inside hard button while");
               Session.set("rand_word", Random.choice(response.wordlist));
               if (Session.get("rand_word").length > 5){
                 Session.set("check", false);
@@ -219,5 +222,16 @@ Template.scrambled_word.helpers({
   },
   get_helper() {
     return (Session.get("helper")+1);
+  },
+  get_levels() {
+    if (Session.get("difficulty") == "EASY"){
+      return Session.get("easy_levels");
+    }
+    else if (Session.get("difficulty") == "MEDIUM"){
+      return Session.get("medium_levels");
+    }
+    else if (Session.get("difficulty") == "HARD"){
+      return Session.get("hard_levels");
+    }
   }
 })
