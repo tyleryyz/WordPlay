@@ -5,4 +5,4 @@ import "./register-apis.js";
   word_list = (word_list_obj.wordlist);
 });
 */
- Meteor.methods({ read_json: function(){ return JSON.parse(Assets.getText('test.json')); }});
+ Meteor.methods({ read_json: function(){ return JSON.parse(Assets.getText('wordlist.json')); }});
