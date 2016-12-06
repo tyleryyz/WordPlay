@@ -3,17 +3,21 @@
   <br>
   <div class="container">
     <div class='center'>
-      <p>Your last score was</p>
-      <h3>
-        {{get_score}}
-      </h3>
-      <br>
-      <br>
-      <p>On the</p>
-      <h3>
-        {{get_difficulty}}
-      </h3>
-      <p>difficulty</p>
+      {{#if score_bool}}
+        <p>Your last score was</p>
+        <h3>
+          {{get_score}}
+        </h3>
+        <br>
+        <br>
+        <p>On the</p>
+        <h3>
+          {{get_difficulty}}
+        </h3>
+        <p>difficulty</p>
+      {{else}}
+        <p>No recent scores</p>
+      {{/if}}
     </div>
   </div>
 </template>

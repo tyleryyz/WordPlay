@@ -12,5 +12,11 @@ Template.view_scores.helpers({
   },
   get_difficulty() {
     return Session.get("difficulty");
+  },
+  score_bool(){
+    if (Session.equals("score", undefined)){
+      return false;
+    }
+    else return true;
   }
 })

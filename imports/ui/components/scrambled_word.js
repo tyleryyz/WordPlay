@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Random } from 'meteor/random';
 import { Session } from 'meteor/session';
+//import { Notifications } from 'meteor/gfk:notifications';
 
 Template.scrambled_word.onCreated(() => {
 
@@ -101,14 +102,18 @@ Template.scrambled_word.events({
     var target = event.target;
     var text = target.guess.value;
     Session.set("guess", text);
+
     console.log("guess: ", Session.get("guess"))
     if (Session.get("guess") == (Session.get("rand_word"))){
         Session.set("score", Session.get("score")+1);
         console.log("score:", Session.get("score"));
         Session.set("helper", Session.get("helper")+1);
         console.log("helper:", Session.get("helper"));
+
+         Materialize.toast('Correct!', 4000)
     }
     else {
+      Materialize.toast('Incorrect!', 4000)
       Session.set("helper", Session.get("helper")+1);
       console.log("helper:", Session.get("helper"));
     }
@@ -147,6 +152,7 @@ Template.scrambled_word.events({
       }
         Session.set("shuffled_word", temp.join(""));
         console.log("OnCreated shuffled word", Session.get("shuffled_word"));
+        target.guess.value = '';
           //console.log("OnCreated Current Random Word second check: ", Session.get("rand_word"));
         }
         else if (Session.get("difficulty")=="MEDIUM"){
@@ -171,6 +177,7 @@ Template.scrambled_word.events({
         }
           Session.set("shuffled_word", temp.join(""));
           console.log("OnCreated shuffled word", Session.get("shuffled_word"));
+          target.guess.value = '';
             //console.log("OnCreated Current Random Word second check: ", Session.get("rand_word"));
           }
           else if (Session.get("difficulty")=="HARD"){
@@ -195,6 +202,7 @@ Template.scrambled_word.events({
           }
             Session.set("shuffled_word", temp.join(""));
             console.log("OnCreated shuffled word", Session.get("shuffled_word"));
+            target.guess.value = '';
               //console.log("OnCreated Current Random Word second check: ", Session.get("rand_word"));
             }
       });
